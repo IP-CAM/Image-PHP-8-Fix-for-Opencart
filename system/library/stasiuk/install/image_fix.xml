@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>image_fix_php8</name>
+    <code>image_fix_php8</code>
+    <description>Save image on PHP8 (fix)</description>
+    <version>1.0.0</version>
+    <author><![CDATA[Ivan Stasiuk<br/><a href="https://stasi.uk">Get Help</a>]]></author>
+    <link>https://stasi.uk</link>
+
+    <file path="system/library/image.php">
+        <operation error="skip">
+            <search><![CDATA[if (is_resource($this->image)) {]]></search>
+            <add position="replace"><![CDATA[
+                /* IMAGE_FIX_PHP8 START */
+                if (is_resource($this->image) || $this->image instanceof \GdImage) {
+                /* IMAGE_FIX_PHP8 END */
+            ]]></add>
+        </operation>
+    </file>
+
+</modification>
